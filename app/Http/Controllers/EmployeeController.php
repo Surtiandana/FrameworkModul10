@@ -40,25 +40,13 @@ class EmployeeController extends Controller
     {
         $pageTitle = 'Create Employee';
 
-        //RAW SQL
-        // $pageTitle = 'Create Employee';
-        // $positions = DB::select('select * from positions');
 
-        //QUERYBUILDER
-        // $pageTitle = 'Create Employee';
-        // $positions = DB::table('positions')->get();
-        // return view('employee.create', compact('pageTitle','positions'));
-
-        // ELOQUENT
         $positions = Position::all();
 
         return view('employee.create', compact('pageTitle', 'positions'));
     }
 
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
 {
     $messages = [
@@ -118,21 +106,6 @@ class EmployeeController extends Controller
     { {
             $pageTitle = 'Employee Detail';
 
-            // RAW SQL QUERY
-            // $employee = collect(DB::select('
-            //     select *, employees.id as employee_id, positions.name as position_name
-            //     from employees
-            //     left join positions on employees.position_id = positions.id
-            //     where employees.id = ?
-            // ', [$id]))->first();
-
-            //QUERY BUILDER
-            // $employee = DB::table('employees')->select('employees.*', 'positions.name as position_name', 'positions.id as position_id')
-            // ->leftJoin('positions', 'positions.id', '=', 'employees.position_id')
-            // ->where('employees.id', $id)
-            // ->first();
-
-            // ELOQUENT
             $employee = Employee::find($id);
 
             return view('employee.show', compact('pageTitle', 'employee'));
@@ -145,12 +118,6 @@ class EmployeeController extends Controller
     public function edit(string $id)
     {
         $pageTitle = 'Edit Employee';
-        // $positions = DB::table('positions')->get();
-        // $employee = DB::table('employees')
-        //     ->select('*', 'employees.id as employee_id', 'positions.name as position_name')
-        //     ->leftJoin('positions', 'employees.position_id', 'positions.id')
-        //     ->where('employees.id', $id)
-        //     ->first();
 
         // ELOQUENT
         $positions = Position::all();
